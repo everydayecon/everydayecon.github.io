@@ -1,5 +1,5 @@
 title: Everyday Econ
-name: Max Liu
+name: Claire Baiyang  Max Liu
 description: >-
   Simple economic insights for daily life.
 url: "https://everydayecon.github.io"
@@ -24,7 +24,7 @@ author:
   avatar: "/assets/images/avatar.png"
   bio: "Economics explained simply."
   location: "Washington, DC"
-  email: max@example.com
+  email: maxyliu1@gmail.com
 
 defaults:
   - scope:
