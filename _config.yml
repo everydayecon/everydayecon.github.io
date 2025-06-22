@@ -1,5 +1,5 @@
 title: Everyday Econ
-name: Claire Baiyang  Max Liu
+name: Claire Baiyang &  Max Liu
 description: >-
   Simple economic insights for daily life.
 url: "https://everydayecon.github.io"
@@ -20,7 +20,7 @@ markdown: kramdown
 highlighter: rouge
 
 author:
-  name: Max Liu
+  name: Claire Baiyang & Max Liu
   avatar: "/assets/images/avatar.png"
   bio: "Economics explained simply."
   location: "Washington, DC"
