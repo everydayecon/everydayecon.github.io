@@ -10,7 +10,7 @@ author:
 
 markdown: kramdown
 theme: null
-plugins:
+#plugins:
  # - jekyll-feed
 
 defaults:
