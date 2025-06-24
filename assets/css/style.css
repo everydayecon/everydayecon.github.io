@@ -1,3 +1,4 @@
 body { font-family: Arial; max-width: 800px; margin: auto; padding: 2rem; }
+nav a { text-decoration: none; font-weight: bold; }
 .post-title { font-size: 2rem; font-weight: bold; }
 .more-button { display: inline-block; background: #2ecc71; color: white; padding: 0.5rem 1rem; text-decoration: none; }
