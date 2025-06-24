@@ -1,22 +1,5 @@
-
 title: Everyday Econ
-description: "Simple economic stories and insights."
-baseurl: ""
-url: "https://everydayecon.github.io"
-
-author:
-  name: Max Liu 
-  name: Claire Baiyang
-
+description: Simple economic insights.
+author: Max Liu
 markdown: kramdown
 theme: null
-#plugins:
- # - jekyll-feed
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
