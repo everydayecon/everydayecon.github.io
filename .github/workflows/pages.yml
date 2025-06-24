@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Ruby
@@ -26,18 +26,16 @@ jobs:
         with:
           ruby-version: '3.1'
 
-      - name: Install dependencies
-        run: |
-          gem install bundler jekyll
-          bundle install || true
+      - name: Install Jekyll
+        run: gem install jekyll
 
       - name: Build site
         run: jekyll build
 
-      - name: Upload artifact
+      - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
+          path: _site
 
   deploy:
     needs: build
@@ -49,3 +47,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
