@@ -1,51 +1,21 @@
+
 title: Everyday Econ
-name: Claire Baiyang &  Max Liu
-description: >-
-  Simple economic insights for daily life.
+description: "Simple economic stories and insights."
+baseurl: ""
 url: "https://everydayecon.github.io"
-baseurl: "" 
-repository: everydayecon/everydayecon.github.io
-remote_theme: "mmistakes/minimal-mistakes"
-
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-paginate
-  - jekyll-include-cache
-
-paginate: 5
-paginate_path: /page:num/
-locale: "en-US"
-markdown: kramdown
-highlighter: rouge
 
 author:
-  name: Claire Baiyang & Max Liu
-  avatar: "/assets/images/avatar.png"
-  bio: "Economics explained simply."
-  location: "Washington, DC"
-  email: maxyliu1@gmail.com
+  name: Max Liu
+
+markdown: kramdown
+theme: null
+plugins:
+  - jekyll-feed
 
 defaults:
-  - scope:
+  -
+    scope:
       path: ""
       type: posts
     values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: false
-      share: true
-      related: true
-
-# Navigation bar
-header:
-  pages:
-    - title: Home
-      url: /
-    - title: Categories
-      url: /categories/
-    - title: About
-      url: /about/
-
-include: ["_pages"]
+      layout: post
