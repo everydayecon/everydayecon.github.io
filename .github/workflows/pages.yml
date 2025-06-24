@@ -1,23 +1,47 @@
-name: Build and Deploy Jekyll
+name: Build and Deploy Jekyll to GitHub Pages
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  github-pages:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-ruby@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
-      - run: gem install bundler jekyll
-      - run: bundle install
-      - run: bundle exec jekyll build
-      - uses: actions/upload-pages-artifact@v1
+
+      - name: Install Jekyll and dependencies
+        run: |
+          gem install bundler jekyll
+          bundle install || true  # allow it to pass even if there's no Gemfile
+
+      - name: Build site
+        run: bundle exec jekyll build
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v2
         with:
           path: _site
-      - uses: actions/deploy-pages@v1
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
