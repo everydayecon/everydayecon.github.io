@@ -11,7 +11,7 @@ author:
 markdown: kramdown
 theme: null
 plugins:
-  - jekyll-feed
+ # - jekyll-feed
 
 defaults:
   -
