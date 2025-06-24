@@ -5,7 +5,8 @@ baseurl: ""
 url: "https://everydayecon.github.io"
 
 author:
-  name: Max Liu
+  name: Max Liu 
+  name: Claire Baiyang
 
 markdown: kramdown
 theme: null
