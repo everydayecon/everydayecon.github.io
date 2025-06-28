@@ -9,5 +9,5 @@ title: Everyday Econ
   <h1 class="post-title">{{ site.posts.first.title }}</h1>
   <p class="post-meta">By {{ site.posts.first.author }} | {{ site.posts.first.date | date: "%b %d %Y" }}</p>
   <p class="post-excerpt">{{ site.posts.first.excerpt | strip_html | truncatewords: 50 }}</p>
-  <a class="more-button" href="{{ site.posts.first.url }}">More</a>
+  <a class="more-button" href="{{ '/blog/' | relative_url }}">More</a>
 </div>
