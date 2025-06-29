@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Team
-permalink: /team/
+permalink: /team-member/
 ---
 
 <h1>Meet Our Founders</h1>
