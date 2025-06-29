@@ -10,8 +10,9 @@ permalink: /blog2/
 </iframe>
 
 <div style="text-align: center; margin-top: 2rem;">
-  <a href="/blog/" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
-    ← Back to Previous Blog (June Newsletter)
-  </a>
+  <a href="/blog/" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">← Back to Previous Blog</a>
 </div>
 
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="/blog2/" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read Next Blog</a>
+</div>
