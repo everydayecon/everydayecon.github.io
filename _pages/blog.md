@@ -9,5 +9,5 @@ permalink: /blog/
 </iframe>
 
 <div style="text-align: center; margin-top: 2rem;">
-  <a href="/blog2/" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read More Blogs</a>
+  <a href="/blog2/" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read Next Blog</a>
 </div>
