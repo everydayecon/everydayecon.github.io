@@ -1,18 +1,24 @@
 ---
-layout: home
+layout: default
 title: Team
 permalink: /team/
 ---
 
-## Meet Our Team
+<h1>Meet Our Founders</h1>
 
-<div class="team-grid">
-  <div class="member">
-    <img src="/assets/team/member1.jpg" alt="Clarie Baiyang">
-    <p>Clarie Baiyang<br><small>Editor-in-Chief</small></p>
+<div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center;">
+
+  <div style="text-align: center;">
+    <img src="{{ '/assets/images/team/claire.jpg' | relative_url }}" alt="Claire Baiyang" style="width: 200px; border-radius: 10px;">
+    <p><strong>Claire Baiyang</strong></p>
+    <p>Co-founder, Economist</p>
   </div>
-  <div class="member">
-    <img src="/assets/team/member2.jpg" alt="Max Liu">
-    <p>Max Liu<br><small>Contributor</small></p>
+
+  <div style="text-align: center;">
+    <img src="{{ '/assets/images/team/max.jpg' | relative_url }}" alt="Max Liu" style="width: 200px; border-radius: 10px;">
+    <p><strong>Max Liu</strong></p>
+    <p>Co-founder, Strategist</p>
   </div>
+
 </div>
+
