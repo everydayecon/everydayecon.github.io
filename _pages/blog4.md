@@ -4,7 +4,7 @@ title: Blog - Page 2
 permalink: /blog4/
 ---
 
-<iframe src="/assets/files/newsletter3.pdf" width="100%" height="600px" style="border: none;">
+<iframe src="/assets/files/newsletter4.pdf" width="100%" height="600px" style="border: none;">
   This browser does not support PDFs. Please download it here:
   <a href="/assets/files/newsletter4.pdf">Download PDF</a>
 </iframe>
