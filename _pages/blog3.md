@@ -14,5 +14,5 @@ permalink: /blog3/
 </div>
 
 <div style="text-align: center; margin-top: 2rem;">
-  <a href="/blog3/" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read Next Blog</a>
+  <a href="/blog4/" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read Next Blog</a>
 </div>
