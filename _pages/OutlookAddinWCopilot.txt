@@ -1,0 +1,432 @@
+To test your Flask app with a **real Outlook account** using Microsoft Graph API, follow these steps:
+
+---
+
+### ✅ 1. **Register Your App in Azure Portal**
+- Go to Azure Portal → **Azure Active Directory** → **App registrations** → **New registration**.
+- Choose **"Accounts in any organizational directory and personal Microsoft accounts"** to support Outlook.com, Hotmail, etc.
+- Set the **redirect URI** to match your Flask app (e.g., `http://localhost:5000/getAToken` or your Azure App Service URL).
+
+---
+
+### 🔐 2. **Configure API Permissions**
+- Under **API permissions**, add:
+  - `Mail.Read`
+  - `User.Read`
+- Click **Grant admin consent** if you're using an organizational account.
+
+---
+
+### 🔑 3. **Create a Client Secret**
+- Go to **Certificates & secrets** → **New client secret**.
+- Save the value securely and add it to your `.env` file.
+
+---
+
+### 🧪 4. **Test with a Real Outlook Account**
+- Run your Flask app locally or deploy it to Azure.
+- Visit the root URL (`/`) which redirects to Microsoft login.
+- Log in with your **Outlook.com** or **organizational account**.
+- After login, you’ll be redirected to `/emails`, which fetches and displays your top 5 emails using Microsoft Graph.
+
+---
+
+### 🧰 Optional: Use Microsoft Graph Explorer
+You can also test Graph API calls using Microsoft Graph Explorer. Log in with your Outlook account and try endpoints like:
+
+```http
+GET https://graph.microsoft.com/v1.0/me/messages
+```
+
+---
+
+Would you like help troubleshooting login issues or setting up Graph Explorer for testing?
+
+To build an Outlook 365 add-in with **Copilot as the analytic tool**, you'll need to combine Microsoft 365 development tools with Copilot extensibility features. Here's a high-level roadmap to guide you:
+
+---
+
+### 🧩 Step-by-Step Guide to Building the Add-In
+
+#### **1. Set Up Your Development Environment**
+- **Join the Microsoft 365 Developer Program** for a free sandbox.
+- Install tools like:
+  - Visual Studio Code
+  - Postman (for API testing)
+  - Ngrok (for local tunneling)
+- Register an **Azure Active Directory (AAD)** app for authentication.
+
+#### **2. Build the Outlook Add-In**
+- Use the **Office Add-ins platform**:
+  - Create a manifest file (XML) that defines your add-in.
+  - Use **HTML/JavaScript** or **React** for the UI.
+  - Use **Office.js** to interact with Outlook (e.g., read emails, calendar events).
+
+#### **3. Integrate Microsoft Copilot**
+- **Copilot Plugins** are RESTful APIs described by OpenAPI specs.
+- Your plugin should:
+  - Be hosted as a web API (Node.js, Python, .NET).
+  - Use OAuth 2.0 via Azure AD.
+  - Return structured JSON optimized for AI consumption.
+
+#### **4. Use Microsoft Graph API for Data Access**
+- Key endpoints:
+  - `/me/messages` – access emails
+  - `/me/events` – access calendar
+  - `/me/mailFolders` – manage folders
+- This allows Copilot to analyze Outlook data for summarization, insights, and automation.
+
+#### **5. Register and Test Your Plugin**
+- Use the **Microsoft 365 Developer Portal** to:
+  - Upload your OpenAPI spec
+  - Link it to your AAD app
+  - Define permissions
+- Test in sandbox environments to ensure Copilot can interact with your plugin.
+
+#### **6. Add Copilot Agent to Your Add-In**
+- Package your add-in with the Copilot agent.
+- Sideload it into Outlook for testing.
+- Use Copilot Studio or Agent Builder to define how Copilot interacts with your plugin.
+
+---
+
+### 🔍 Use Cases You Can Enable
+- **Email Summarization**: Copilot summarizes threads and highlights key points.
+- **Meeting Prep**: Generate agendas based on calendar and email context.
+- **Task Automation**: Extract tasks from emails and create reminders or to-dos.
+- **Sentiment Analysis**: Analyze tone and suggest improvements.
+
+Would you like a sample manifest file or code snippet to get started?
+
+Here’s a **sample manifest file** for an Outlook 365 add-in that integrates with a Copilot plugin. This manifest is written in XML and includes the basic structure needed to register the add-in and enable task pane functionality.
+
+---
+
+### 📄 Sample `manifest.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="TaskPaneApp">
+  <Id>12345678-9abc-def0-1234-56789abcdef0</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Your Company Name</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Copilot Analytics Add-in"/>
+  <Description DefaultValue="An Outlook add-in that uses Copilot to analyze emails and calendar data."/>
+  
+  <IconUrl DefaultValue="https://yourdomain.com/assets/icon.png"/>
+  <SupportUrl DefaultValue="https://yourdomain.com/support"/>
+
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+ Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="Mailbox"/>
+    </Sets>
+  </Requirements>
+
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://yourdomain.com/taskpane.html"/>
+  </DefaultSettings>
+
+  <Permissions>ReadWriteItem</Permissions>
+
+  <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+</OfficeApp>
+```
+
+---
+
+### 🔧 Key Elements Explained
+
+- **`SourceLocation`**: Points to your web app (task pane) that interacts with Copilot.
+- **`Permissions`**: `ReadWriteItem` allows access to email content for analysis.
+- **`Rule`**: Specifies when the add-in activates (e.g., when reading a message).
+- **`Hosts`**: Specifies that this add-in is for Outlook (`Mailbox`).
+
+---
+
+Would you like help generating the `taskpane.html` or the backend API that Copilot would call for analytics?
+
+Here’s your **`taskpane.html` file** for the Outlook add-in:
+
+📄 [Download taskpane.html](blob:https://outlook.office.com/39f17ba5-b710-407c-a954-3a0e7de79cac)
+
+### 🔍 What It Does
+- Displays a simple UI with a button labeled **"Analyze Email"**.
+- When clicked, it sends a POST request to your backend API (`https://yourdomain.com/api/analyze`) with a sample email ID.
+- Displays the JSON response from the API in a readable format.
+
+---
+
+### 🛠️ Next Steps
+Would you like help building the backend API (`/api/analyze`) that Copilot would call to perform the analytics? I can generate a sample in Node.js, Python (Flask), or another language of your choice.
+
+Here’s a **sample Python Flask API** that simulates Copilot-style analytics for your Outlook add-in:
+
+📄 [Download taskpane.html (same as before)](blob:https://outlook.office.com/0c594bb6-8f74-443c-8df4-c6a85db778fd)
+
+---
+
+### 🧠 API Overview
+
+```python
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api/analyze', methods=['POST'])
+def analyze_email():
+    data = request.get_json()
+    email_id = data.get('email_id')
+
+    # Simulated analysis result
+    analysis_result = {
+        "email_id": email_id,
+        "summary": "This email discusses a test trial for the Ebook Central Reader App and includes access instructions.",
+        "sentiment": "Neutral",
+        "action_items": [
+            "Review the Ebook Central Reader App",
+            "Provide feedback to ProQuest",
+            "Forward the email to the Collection Development Team if appropriate"
+        ],
+        "entities": {
+            "sender": "Liliana Maravilla",
+            "recipient": ["Gwen Vredevoogd", "Mason Yang"],
+            "organization": "Marymount University",
+            "platform": "Ebook Central Reader App"
+        }
+    }
+
+    return jsonify(analysis_result)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+---
+
+### 🔧 How to Use It
+
+1. Save this code in a file named `app.py`.
+2. Run it locally with:
+   ```bash
+   python app.py
+   ```
+3. Make sure your `taskpane.html` points to this API endpoint (`http://localhost:5000/api/analyze` or your deployed URL).
+4. Deploy to a cloud service like **Render**, **Heroku**, or **Azure App Service** for production use.
+
+Would you like help deploying this Flask app or connecting it to Microsoft Graph for real email data?
+
+
+Here’s a concise guide to help you **deploy your Flask app to Azure App Service** and **connect it to Microsoft Graph API** for accessing Outlook email data:
+
+---
+
+### 🚀 Part 1: Deploy Flask App to Azure App Service
+
+#### **Steps:**
+1. **Install Azure CLI**:
+   ```bash
+   curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+   ```
+
+2. **Login to Azure**:
+   ```bash
+   az login
+   ```
+
+3. **Prepare Your Flask App**:
+   - Ensure your app has a `requirements.txt` and `startup.txt` or `app.py`.
+   - Add a `web.config` or `startup.txt` if needed for Azure to recognize the entry point.
+
+4. **Create and Deploy Web App**:
+   ```bash
+   az webapp up --name your-app-name --resource-group your-resource-group --runtime "PYTHON:3.9"
+   ```
+
+5. **Verify Deployment**:
+   - Visit `https://your-app-name.azurewebsites.net` to confirm it's live.
+
+---
+
+### 🔗 Part 2: Connect Flask App to Microsoft Graph API
+
+#### **Steps:**
+1. **Register Your App in Azure Portal**:
+   - Go to **Azure Active Directory > App registrations > New registration**.
+   - Set redirect URI to `https://your-app-name.azurewebsites.net/auth/callback`.
+
+2. **Configure Permissions**:
+   - Add Microsoft Graph API permissions like `Mail.Read`, `User.Read`, etc.
+   - Grant admin consent if needed.
+
+3. **Install Required Libraries**:
+   ```bash
+   pip install msal requests python-dotenv
+   ```
+
+4. **Use MSAL to Authenticate and Get Token**:
+   ```python
+   from msal import ConfidentialClientApplication
+
+   app = ConfidentialClientApplication(
+       client_id="YOUR_CLIENT_ID",
+       authority="https://login.microsoftonline.com/YOUR_TENANT_ID",
+       client_credential="YOUR_CLIENT_SECRET"
+   )
+
+   token = app.acquire_token_for_client(scopes=["https://graph.microsoft.com/.default"])
+   ```
+
+5. **Call Microsoft Graph API**:
+   ```python
+   import requests
+
+   headers = {
+       "Authorization": f"Bearer {token['access_token']}"
+   }
+
+   response = requests.get("https://graph.microsoft.com/v1.0/me/messages", headers=headers)
+   print(response.json())
+   ```
+
+---
+
+Would you like a downloadable starter project with this setup, or help configuring the `.env` and authentication flow for user login?
+
+Here’s a **starter Flask project** that integrates with Microsoft Graph API for Outlook email access and is ready for deployment to Azure App Service.
+
+📄 [Download taskpane.html (UI component)](blob:https://outlook.office.com/34b2ebd0-362c-4784-aa8e-83a65f689cdc)
+
+---
+
+### 📁 Project Structure
+
+```
+copilot-outlook-analytics/
+├── app.py
+├── .env
+├── requirements.txt
+└── taskpane.html
+```
+
+---
+
+### 🧠 `app.py` Highlights
+
+- Uses **MSAL** for authentication.
+- Redirects users to Microsoft login.
+- Fetches top 5 emails using Microsoft Graph API.
+- Stores access token in session.
+
+---
+
+### 🔐 `.env` Example
+
+```env
+CLIENT_ID=your-client-id
+CLIENT_SECRET=your-client-secret
+TENANT_ID=your-tenant-id
+REDIRECT_URI=https://your-app-name.azurewebsites.net/getAToken
+FLASK_SECRET_KEY=your-secret-key
+```
+
+---
+
+### 📦 `requirements.txt`
+
+```txt
+Flask
+requests
+python-dotenv
+msal
+```
+
+---
+
+### 🚀 Deployment Tips
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Run locally:
+   ```bash
+   flask run
+   ```
+
+3. Deploy to Azure using:
+   ```bash
+   az webapp up --name your-app-name --resource-group your-resource-group --runtime "PYTHON:3.9"
+   ```
+
+Would you like me to package this into a downloadable ZIP file for you?
+
+Here’s your complete **starter project ZIP file** for building a Flask-based Outlook analytics add-in with Microsoft Graph API integration:
+
+📦 [Download copilot-outlook-analytics.zip](blob:https://outlook.office.com/243d530b-daf0-437d-80eb-28ac38e43661)  
+📄 [Download taskpane.html (UI component)](blob:https://outlook.office.com/52269204-33c5-4c15-801c-ff96b37ed116)
+
+---
+
+### ✅ Included Files
+
+- `app.py`: Flask app with MSAL authentication and email fetching.
+- `.env`: Template for storing secrets and config.
+- `requirements.txt`: Dependencies for deployment.
+- `taskpane.html`: Frontend UI for the Outlook add-in.
+
+---
+
+Would you like help setting up this project in Azure or connecting it to a real Outlook account for testing?
+
+To test your Flask app with a **real Outlook account** using Microsoft Graph API, follow these steps:
+
+---
+
+### ✅ 1. **Register Your App in Azure Portal**
+- Go to Azure Portal → **Azure Active Directory** → **App registrations** → **New registration**.
+- Choose **"Accounts in any organizational directory and personal Microsoft accounts"** to support Outlook.com, Hotmail, etc.
+- Set the **redirect URI** to match your Flask app (e.g., `http://localhost:5000/getAToken` or your Azure App Service URL).
+
+---
+
+### 🔐 2. **Configure API Permissions**
+- Under **API permissions**, add:
+  - `Mail.Read`
+  - `User.Read`
+- Click **Grant admin consent** if you're using an organizational account.
+
+---
+
+### 🔑 3. **Create a Client Secret**
+- Go to **Certificates & secrets** → **New client secret**.
+- Save the value securely and add it to your `.env` file.
+
+---
+
+### 🧪 4. **Test with a Real Outlook Account**
+- Run your Flask app locally or deploy it to Azure.
+- Visit the root URL (`/`) which redirects to Microsoft login.
+- Log in with your **Outlook.com** or **organizational account**.
+- After login, you’ll be redirected to `/emails`, which fetches and displays your top 5 emails using Microsoft Graph.
+
+---
+
+### 🧰 Optional: Use Microsoft Graph Explorer
+You can also test Graph API calls using Microsoft Graph Explorer. Log in with your Outlook account and try endpoints like:
+
+```http
+GET https://graph.microsoft.com/v1.0/me/messages
+```
+
+---
+
+Would you like help troubleshooting login issues or setting up Graph Explorer for testing?
+
